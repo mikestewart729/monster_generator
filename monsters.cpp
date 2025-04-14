@@ -39,6 +39,36 @@ public:
     {
     }
 
+    constexpr std::string_view getTypeString() const
+    {
+        switch (m_type)
+        {
+        case dragon:    return "dragon";
+        case goblin:    return "goblin";
+        case ogre:      return "ogre";
+        case orc:       return "orc";
+        case skeleton:  return "skeleton";
+        case troll:     return "troll";
+        case vampire:   return "vampire";
+        case zombie:    return "zombie";
+        default:        return "unknown";
+        }
+    }
+
+    void print() const 
+    {
+        std::cout << m_name << " the " << getTypeString();
+
+        if (m_hit_points <= 0)
+        {
+            std::cout << " is dead.\n";
+        }
+        else
+        {
+            std::cout << " has " << m_hit_points << " and says " << m_roar << ".\n";
+        }
+    }
+
 private:
     Type m_type {};
     std::string m_name {""};
@@ -49,6 +79,10 @@ private:
 int main() 
 {
     Monster skeleton { Monster::skeleton, "Bones", "*rattle*", 4 };
+    skeleton.print();
+
+    Monster vampire { Monster::vampire, "Nibblez", "*hiss*", 0 };
+    vampire.print();
 
     return 0;
 }
