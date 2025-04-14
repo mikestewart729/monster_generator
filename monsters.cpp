@@ -14,3 +14,12 @@ enum class MonsterType
     zombie,
     maxMonsterTypes,
 };
+
+class Monster
+{
+private:
+    MonsterType type {};
+    std::string name {""};
+    std::string roar {""};
+    int hit_points {};
+};
