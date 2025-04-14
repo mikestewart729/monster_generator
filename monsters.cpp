@@ -65,7 +65,8 @@ public:
         }
         else
         {
-            std::cout << " has " << m_hit_points << " and says " << m_roar << ".\n";
+            std::cout << " has " << m_hit_points << " hit points and says " 
+                      << m_roar << ".\n";
         }
     }
 
@@ -78,20 +79,44 @@ private:
 
 namespace MonsterGenerator
 {
+    // From problem statement, return a random name based on an integer 0-5 inclusive
+    std::string getName(int rand_index)
+    {
+        switch (rand_index)
+        {
+        case 0: return "Melvin";
+        case 1: return "Snarkins";
+        case 2: return "Mr. Bojangles";
+        case 3: return "Horribilus";
+        case 4: return "Evilina";
+        case 5: return "Martin";
+        default: return "?";
+        }
+    }
+
+    // from problem statement, return a random roar based on an integer 0-5 inclusive
+    std::string getRoar(int rand_index)
+    {
+        switch (rand_index)
+        {
+        case 0: return "*roar*";
+        case 1: return "*shriek*";
+        case 2: return "*screech*";
+        case 3: return "*howl*";
+        case 4: return "*ominous silence*";
+        case 5: return "*boo*";
+        default: return "";
+        }
+    }
+
     Monster generate()
     {
-        return Monster { Monster::skeleton, "Bones", "*rattle*", 4 };
+        return Monster { Monster::skeleton, getName(0), getRoar(0), 4 };
     }
 }
 
 int main() 
 {
-    // Monster skeleton { Monster::skeleton, "Bones", "*rattle*", 4 };
-    // skeleton.print();
-
-    // Monster vampire { Monster::vampire, "Nibblez", "*hiss*", 0 };
-    // vampire.print();
-
     Monster m { MonsterGenerator::generate() };
     m.print();
 
