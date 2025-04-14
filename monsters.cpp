@@ -17,8 +17,22 @@ enum class MonsterType
 
 class Monster
 {
+public: 
+    enum Type 
+    {
+        dragon,
+        goblin,
+        ogre,
+        orc,
+        skeleton,
+        troll,
+        vampire,
+        zombie,
+        maxMonsterTypes,
+    };
+
 private:
-    MonsterType m_type {};
+    Type m_type {};
     std::string m_name {""};
     std::string m_roar {""};
     int m_hit_points {};
