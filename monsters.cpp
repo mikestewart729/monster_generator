@@ -18,8 +18,8 @@ enum class MonsterType
 class Monster
 {
 private:
-    MonsterType type {};
-    std::string name {""};
-    std::string roar {""};
-    int hit_points {};
+    MonsterType m_type {};
+    std::string m_name {""};
+    std::string m_roar {""};
+    int m_hit_points {};
 };
