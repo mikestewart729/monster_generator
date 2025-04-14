@@ -1,19 +1,7 @@
+#include "random.h"
 #include <iostream>
 #include <string>
 #include <string_view>
-
-enum class MonsterType 
-{
-    dragon,
-    goblin,
-    ogre,
-    orc,
-    skeleton,
-    troll,
-    vampire,
-    zombie,
-    maxMonsterTypes,
-};
 
 class Monster
 {
@@ -80,6 +68,8 @@ private:
 namespace MonsterGenerator
 {
     // From problem statement, return a random name based on an integer 0-5 inclusive
+    // in principle, can prevent "magic value" problems by setting this number as a 
+    // variable, or otherwise handling it.
     std::string getName(int rand_index)
     {
         switch (rand_index)
@@ -109,9 +99,18 @@ namespace MonsterGenerator
         }
     }
 
+    // make a variable to house the maximum of the health range for our monsters
+    static int s_min_health { 0 };
+    static int s_max_health { 100 };
+
     Monster generate()
     {
-        return Monster { Monster::skeleton, getName(0), getRoar(0), 4 };
+        return Monster { 
+            static_cast<Monster::Type>(Random::get(0, Monster::maxMonsterTypes - 1)), 
+            getName(Random::get(0, 5)), 
+            getRoar(Random::get(0, 5)), 
+            Random::get(MonsterGenerator::s_min_health, MonsterGenerator::s_max_health) 
+        };
     }
 }
 
