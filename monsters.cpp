@@ -76,13 +76,24 @@ private:
     int m_hit_points {};
 };
 
+namespace MonsterGenerator
+{
+    Monster generate()
+    {
+        return Monster { Monster::skeleton, "Bones", "*rattle*", 4 };
+    }
+}
+
 int main() 
 {
-    Monster skeleton { Monster::skeleton, "Bones", "*rattle*", 4 };
-    skeleton.print();
+    // Monster skeleton { Monster::skeleton, "Bones", "*rattle*", 4 };
+    // skeleton.print();
 
-    Monster vampire { Monster::vampire, "Nibblez", "*hiss*", 0 };
-    vampire.print();
+    // Monster vampire { Monster::vampire, "Nibblez", "*hiss*", 0 };
+    // vampire.print();
+
+    Monster m { MonsterGenerator::generate() };
+    m.print();
 
     return 0;
 }
